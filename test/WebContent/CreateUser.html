@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="loginCSS.css">
+<script src=".\jquery-3.3.1.js"></script>
+<script src=".\Source.js"></script>
+</head>
+<body>
+
+<form  onsubmit = "return form_validate()" method="post" style="border:1px solid #ccc" id = "createUserForm">
+  <div id = 'createUser' class="container" >
+    <h1>Create User</h1>
+    <p>Please fill in your data to create a user</p>
+    <hr>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" id="username">
+    <div id="err_username_msg"></div>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password"  onkeyup="checkPassword()" placeholder="Enter Password" id="psw" >
+    <div id = "err_password_msg"></div>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" id="psw_repeat" onkeyup="checkPassword()">
+    <div id = "err_passwordrepeat_msg"></div>
+    
+    <label for="CPR"><b>Enter CPR</b></label>
+    <input type="CPR" placeholder="Enter CPR Number" id="CPR">
+    <div id = "err_CPR_msg"></div>
+    
+    <label for="Roles"><b>Enter Roles</b></label>
+    <input type="Roles" placeholder="Enter Roles" id="Roles">
+    <div id = "err_roles_msg"></div>
+
+    <div class="buttons">
+      <button type="button" class="cancelbtn" id='cancel'>Cancel</button>
+      <button type="submit" class="signupbtn" id='confirmCreateUser'>Sign Up</button>
+    </div>
+  </div>
+</form>
+
+ 
+</body>
+</html>

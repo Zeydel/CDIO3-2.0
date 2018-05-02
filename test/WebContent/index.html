@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login side</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="loginCSS.css">
+<script src=".\jquery-3.3.1.js"></script>
+<script type="text/javascript" src=".\jquery.serialze-objects.js"></script>
+<script src=".\Source.js"></script>
+</head> 
+
+<body>
+<div id = "mainContainer">
+
+	<div class = "container" id='LoginContainer' class="frontpage col-md-6 col-md-offset-3 text-center">
+		<p style="font-size: 160%;">
+			<b>Logon Page</b>
+		</p>
+		<form onsubmit = "return validate_login()" method="post" id='tobias'>
+			Username <input type="text" id="fname">
+			<div id = "err_username_message"></div>
+			<br> Password <input
+				type="password" id="user_password">
+				<div id = "err_password_message"></div>
+				<br> 
+				<input id='submit'  type="submit"
+				value="Log In">
+		</form>
+		<img alt="IsaacsFar" src="DTUlogo.png"
+			style="width: 200px; height: 200px; padding: 10px">
+	</div>
+
+</div>
+</body>
+
+
+
+</html>
