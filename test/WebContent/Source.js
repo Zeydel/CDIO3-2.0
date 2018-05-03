@@ -13,7 +13,6 @@ $(document).ready(function(){
 	$('#adminCon').submit(function(){
 		event.preventDefault();
 		$('#mainContainer').load('CreateUser.html');
-		loadUsers()
 	})
 	
 	$('#confirmCreateUser').click(function(){
@@ -35,47 +34,51 @@ $(document).ready(function(){
 		})
 	}
 	
-	function loadUsers(){
-		event.preventDefault();
-		$.ajax({
-			url : 'rest/user',
-			type : 'GET',
-			contentType : "application/json",
-			success : function(){
-				$.each(data, function(i, el){
-					('#users').append(generateUserHTML(el))
-					alert(HEJ);
-				})
-				
-			}
-		})
-	}
-	
 	
 	$('#cancel').click(function(){
 		event.preventDefault();
 		$('#mainContainer').load('adminContainer.html');
 	})
 	
-	function generateHTML(json){
-		var html = '<tr>'
-		$.each(json, function(i, elt) {
-			html += '<td>' + elt + '</td>';
-		});
-		return html += '</tr>'
-	}
+
 	
-	function generateUserHTML(UserDTO) {
-		return '<tr><td>' + UserDTO.userId + '</td>' +
-				'<td>' + UserDTO.userName + '</td>' +
-				'<td>' + UserDTO.ini + '</td>' + 
-				'<td>' + UserDTO.roles + '</td>' +
-				'<td>' + UserDTO.password + '</td>' +
-				'<td>' + UserDTO.cpr + '</td>' + '</tr>';
-	}
+	
 	
 	
 })
+
+function loadUsers(){
+		event.preventDefault();
+		$.ajax({
+			url : 'rest/user',
+			type : 'get',
+			contentType: "application/json",
+			success : function(data){
+				//$.each(data, function(i, el){
+					$('#userTableBody').append(generateUserHTML(data));
+					alert(el)
+				//})
+				
+			}
+		})
+	}
+
+function generateUserHTML(UserDTO) {
+	return '<tr><td>' + UserDTO.userId + '</td>' +
+			'<td>' + UserDTO.userName + '</td>' +
+			'<td>' + UserDTO.ini + '</td>' + 
+			'<td>' + UserDTO.roles + '</td>' +
+			'<td>' + UserDTO.password + '</td>' +
+			'<td>' + UserDTO.cpr + '</td>' + '</tr>';
+}
+
+function generateHTML(json){
+	var html = '<tr>'
+	$.each(json, function(i, elt) {
+		html += '<td>' + elt + '</td>';
+	});
+	return html += '</tr>'
+}
 
 /*	function form_validate(){
 		//alert("function is there");

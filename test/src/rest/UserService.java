@@ -18,32 +18,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.UserDTO;
 
 
-
+@Path("user")
 public class UserService {
 	static Map<Integer, UserDTO> users = new HashMap<>();
 	static {
+		
 		users.put(1, new UserDTO(8, "Mads Jørgensen", new ArrayList<String>(Arrays.asList("test")), "1234", "080197-0761"));
 	}
 	ObjectMapper mapper = new ObjectMapper();
 	
-	@Path("user")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean AddIngredient(String userId, String userName, String ini, String roles, String password, String cpr) {
-		users.put(1, new UserDTO(Integer.parseInt(userId), userName, new ArrayList<String>(Arrays.asList(roles)), password, cpr));
-		return true;
-	}
+//	@Path("user")
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	public boolean AddIngredient(String userId, String userName, String ini, String roles, String password, String cpr) {
+//		users.put(1, new UserDTO(Integer.parseInt(userId), userName, new ArrayList<String>(Arrays.asList(roles)), password, cpr));
+//		return true;
+//	}
 	
-	@Path("user")
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getUsers() {
-		try {
-			return mapper.writeValueAsString(users);
-		} catch (JsonProcessingException e) {
-			System.out.println("hov");
-			return null;
-		}
+			try {
+				UserDTO mads = new UserDTO(8, "Mads Jørgensen", new ArrayList<String>(Arrays.asList("test")), "1234", "080197-0761");
+				return mapper.writeValueAsString(mads);
+			} catch (JsonProcessingException e) {
+				return "hej";
+			}
+
 	}
 	
 
