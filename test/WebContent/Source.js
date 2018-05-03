@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$('#LoginContainer').submit(function(){
 		event.preventDefault();
 		$('#mainContainer').load('adminContainer.html');
-		loadUsers()
+		loadUsers();
 	})
 	
 	$('#adminCon').submit(function(){
@@ -30,10 +30,9 @@ $(document).ready(function(){
 			data: ('#createUserForm').serializeJSON,
 			contentType : ("application/json"),
 			success : function(data){
-				alert(HEJ)
+				
 			}
 		})
-		$('#mainContainer').load('adminContainer.html');
 	}
 	
 	function loadUsers(){
@@ -41,9 +40,11 @@ $(document).ready(function(){
 		$.ajax({
 			url : 'rest/user',
 			type : 'GET',
+			contentType : "application/json",
 			success : function(){
-				$.each(json, function(i, el){
-					$('#userTableBody').append(el)
+				$.each(data, function(i, el){
+					('#users').append(generateUserHTML(el))
+					alert(HEJ);
 				})
 				
 			}
