@@ -52,12 +52,11 @@ function loadUsers(){
 		$.ajax({
 			url : 'rest/user',
 			type : 'get',
-			contentType: "application/json",
+			dataType : 'json',
 			success : function(data){
-				//$.each(data, function(i, el){
-					$('#userTableBody').append(generateUserHTML(data));
-					alert(el)
-				//})
+				$.each(data, function(i, el){
+					$('#userTableBody').append(generateUserHTML(el));
+				})
 				
 			}
 		})
