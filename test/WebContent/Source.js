@@ -7,6 +7,7 @@ $(document).ready(function(){
 	$('#LoginContainer').submit(function(){
 		event.preventDefault();
 		$('#mainContainer').load('adminContainer.html');
+		//alert("hi");
 		loadUsers();
 	})
 	
@@ -15,52 +16,80 @@ $(document).ready(function(){
 		$('#mainContainer').load('CreateUser.html');
 	})
 	
-	$('#confirmCreateUser').click(function(){
+	$('#createUserForm').submit(function(){
+		//alert("hi0.5");
+		event.preventDefault();
+		$('#mainContainer').load('adminContainer.html');
+		//createUser();
+		loadUsers();
+	})
+	
+	$('#createUserButton').click(function(){
 		event.preventDefault();
 		createUser();
+		alert("al");
 		$('#mainContainer').load('adminContainer.html');
+		alert("ale");
+
+		alert("aler");
+
+		loadUsers();
+		alert("alert");
 	})
 
-	function createUser(){
-		event.preventDefault();
-		$.ajax({
-			url : 'rest/user',
-			type : 'POST',
-			data: ('#createUserForm').serializeJSON,
-			contentType : ("application/json"),
-			success : function(data){
-				
-			}
-		})
-	}
-	
 	
 	$('#cancel').click(function(){
 		event.preventDefault();
 		$('#mainContainer').load('adminContainer.html');
-	})
-	
-
-	
-	
-	
-	
+	})	
 })
 
+
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+function createUser(){
+	
+	var data = $('#createUserForm').serializeObject();
+	event.preventDefault();
+	$.ajax({
+		url : 'rest/UserService/users',
+		type : 'POST',
+		data: data,
+		contentType : ("application/json"),
+		success : function(data){
+			alert(data)
+		}
+	})
+}
+
 function loadUsers(){
-		event.preventDefault();
-		$.ajax({
-			url : 'rest/user',
-			type : 'get',
-			dataType : 'json',
-			success : function(data){
-				$.each(data, function(i, el){
-					$('#userTableBody').append(generateUserHTML(el));
-				})
-				
-			}
-		})
-	}
+	event.preventDefault();
+	$.ajax({
+		url : 'rest/UserService/users',
+		type : 'GET',
+		dataType : 'json',
+		success : function(data){
+			$.each(data, function(i, el){
+				$('#userTableBody').append(generateUserHTML(el));
+			})
+		}
+	})
+}
 
 function generateUserHTML(UserDTO) {
 	return '<tr><td>' + UserDTO.userId + '</td>' +
