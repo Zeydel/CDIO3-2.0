@@ -37,7 +37,39 @@ $(document).ready(function(){
 		alert("alert");
 	})
 
+//	function createUser(){
+//		event.preventDefault();
+//		$.ajax({
+//			url : 'rest/user',
+//			type : 'POST',
+//			data: ('#createUserForm').serializeJSON,
+//			contentType : ("application/json"),
+//			success : function(data){
+//				
+//			}
+//		})
+//	}
 	
+	
+	$('#confirmDeleteUser').click(function deleteUser(){
+		event.preventDefault();
+		$.ajax({
+			url : 'rest/user',
+			type : 'post',
+			data : JSON.stringify($('#deleteUserForm').val()),
+			contentType : "application/json",
+			dataType: "json",
+			success : function(data){
+				alert(data)
+			},
+			error : function(){
+				alert("lort")
+			}
+		})
+		$('#userTableBody').html('')
+		loadUsers();
+	})
+		
 	$('#cancel').click(function(){
 		event.preventDefault();
 		$('#mainContainer').load('adminContainer.html');
